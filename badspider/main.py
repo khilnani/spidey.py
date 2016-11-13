@@ -128,7 +128,7 @@ def download( url, filter, dir, headers, count_depth=1):
     print('Downloaded to {}'.format(file_path))
 
     if len(downloaded_urls) >= max_downloads:
-        print('\nReach specified maximum downloads {}.\n'.format(max_downloads))
+        print('\nReached specified maximum downloads {}.\n'.format(max_downloads))
         sys.exit(0)
 
     urls = find_urls(data, filter)
