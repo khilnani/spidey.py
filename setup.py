@@ -6,7 +6,7 @@ from setuptools import setup, find_packages
 readme = open('README.md', 'r').read()
 setup(
     name='badspider',
-    version='0.1',
+    version='0.3',
     url='https://github.com/khilnani/badspider.py',
     license='MIT',
     author='khilnani',
@@ -18,7 +18,7 @@ setup(
     install_requires=['requests'],
     entry_points={
         'console_scripts': [
-            'badspider = badspider:main',
+            'badspider = badspider.main:main',
             ]
     },
     keywords=('web', 'api', 'downloader', 'spider', 'crawler'),

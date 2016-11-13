@@ -4,6 +4,9 @@ init:
 
 clean:
 		find . -name "*.pyc" -exec rm -rf {} \;
+		rm -rf build/
+		rm -rf dist/
+		rm -rf test/
 
 package:
 		python setup.py sdist

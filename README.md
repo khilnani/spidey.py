@@ -4,6 +4,8 @@
 
 ## Installation
 
+> Pypi Location: https://pypi.python.org/pypi/badspider
+
 - Using Pypi - `pip install badspider`
 
 ## Usage
