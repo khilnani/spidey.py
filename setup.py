@@ -6,12 +6,12 @@ from setuptools import setup, find_packages
 readme = open('README.md', 'r').read()
 setup(
     name='badspider',
-    version='0.4',
+    version='0.4.1',
     url='https://github.com/khilnani/badspider.py',
     license='MIT',
     author='khilnani',
     author_email='nik@khilnani.org',
-    description='Terrible web spider, but useful for recursive API downloads.',
+    description='A terribly coded web spider, but useful for recursive API downloads.',
     include_package_data=True,
     long_description=readme,
     packages=find_packages(),

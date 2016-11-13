@@ -1,6 +1,6 @@
 # badspider.py
 
-> Terrible web spider, but useful for recursive API downloads.
+> A terribly coded web spider, but useful for recursive API downloads.
 
 ## Installation
 
