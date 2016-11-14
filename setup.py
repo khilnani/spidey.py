@@ -6,7 +6,7 @@ from setuptools import setup, find_packages
 readme = open('README.md', 'r').read()
 setup(
     name='badspider',
-    version='0.4.1',
+    version='0.4.2',
     url='https://github.com/khilnani/badspider.py',
     license='MIT',
     author='khilnani',

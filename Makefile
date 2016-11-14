@@ -1,6 +1,6 @@
 init:
 		pip install -r requirements.txt
-		pip install -e .
+		pip install -e . --upgrade
 
 clean:
 		find . -name "*.pyc" -exec rm -rf {} \;

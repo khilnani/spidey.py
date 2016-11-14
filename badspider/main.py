@@ -10,6 +10,7 @@ import urllib2
 import requests
 from urlparse import urlparse
 from mimetypes import guess_extension
+import time
 
 
 """
@@ -33,6 +34,7 @@ from mimetypes import guess_extension
 downloaded_urls = []
 max_downloads =  100
 max_depth = 10
+sleep = 0
 
 
 parser = argparse.ArgumentParser(description='Terrible web spider, but useful for recursive API downloads.')
@@ -42,6 +44,7 @@ parser.add_argument('-f', '--filter', dest='filter', metavar="FILTER", help="URL
 parser.add_argument('-hh', '--headers', dest='headers', metavar="HEADERS", help="HTTP Headers.")
 parser.add_argument('-n', '--depth', dest='depth', type=int, metavar="DEPTH", help="Recursive depth (Default: {}).".format(max_depth))
 parser.add_argument('-m', '--max', dest='max', type=int, metavar="NUM", help="Maximum number of downloads (Default: {}).".format(max_downloads))
+parser.add_argument('-s', '--sleep', dest='sleep', type=int, metavar="NUM", help="Pause or sleep time between downloads in secondsi.")
 args = parser.parse_args()
 
 
@@ -80,6 +83,11 @@ def sanitize(filename):
         new_name = 'index'
     new_name = new_name[0:125]
     return new_name
+
+def wait():
+    if sleep > 0:
+        print('Waiting for {} seconds ...'.format(sleep))
+        time.sleep(sleep)
 
 
 def download( url, filter, dir, headers, count_depth=1):
@@ -127,6 +135,8 @@ def download( url, filter, dir, headers, count_depth=1):
 
     print('Downloaded to {}'.format(file_path))
 
+    wait()
+
     if len(downloaded_urls) >= max_downloads:
         print('\nReached specified maximum downloads {}.\n'.format(max_downloads))
         sys.exit(0)
@@ -138,10 +148,13 @@ def download( url, filter, dir, headers, count_depth=1):
         for u in urls:
     	    if u not in downloaded_urls:
 	            download(u, filter, dir, headers, count_depth)
+    else:
+        print('\nReached specified maximum depth {}.\n'.format(max_depth))
+        sys.exit(0)
 
 
 def main():
-    global max_depth, max_downloads
+    global max_depth, max_downloads, sleep
     if args.url == None or args.filter == None or args.dir == None:
         parser.print_help()
     else:
@@ -159,6 +172,9 @@ def main():
         # max
         if args.max != None and args.max != 0:
             max_downloads = args.max
+        # sleep
+        if args.sleep != None and args.sleep != 0:
+            sleep = args.sleep
         # Create dir
         mkpath(args.dir)
 

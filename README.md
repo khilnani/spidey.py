@@ -25,7 +25,8 @@ badspider \
 	-u 'https://www.google.com/' \
 	-hh '{"Accept" : "application/json"}' \
 	-n 2 \
-    -m 10
+    -m 10 \
+    -s 5
 ```
 ```
 badspider \
@@ -34,5 +35,7 @@ badspider \
 	--url 'https://www.google.com/' \
 	--headers '{"Accept" : "application/json"}' \
 	--depth 2 \
-    --max 10
+    --max 10 \
+    --sleep 5
+
 ```
