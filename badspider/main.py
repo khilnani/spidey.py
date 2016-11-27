@@ -35,11 +35,12 @@ downloaded_urls = []
 max_downloads =  100
 max_depth = 10
 sleep = 0
-
+base_url = None
 
 parser = argparse.ArgumentParser(description='Terrible web spider, but useful for recursive API downloads.')
 parser.add_argument('-d', '--dir', dest='dir', metavar="DIR", help="Directory to save to.")
 parser.add_argument('-u', '--url', dest='url', metavar="URL", help="The url or api endpint to download.")
+parser.add_argument('-b', '--base', dest='base', metavar="URL", help="The base url to use for relative links.")
 parser.add_argument('-f', '--filter', dest='filter', metavar="FILTER", help="URL filter to limit recursive API calls.")
 parser.add_argument('-hh', '--headers', dest='headers', metavar="HEADERS", help="HTTP Headers.")
 parser.add_argument('-n', '--depth', dest='depth', type=int, metavar="DEPTH", help="Recursive depth (Default: {}).".format(max_depth))
@@ -65,6 +66,14 @@ def find_urls(data, filter):
     for url in urls:
         if filter in url:
             results.append(url)
+
+    aurls = re.findall('<a\s+(?:[^>]*?\s+)?href="([^"]*)"', data)
+    for aurl in aurls:
+        if filter in aurl:
+            if aurl.find('http') != 0:
+                aurl = base_url + aurl
+            results.append(aurl)
+
     return results
 
 def sanitize(filename):
@@ -73,6 +82,7 @@ def sanitize(filename):
     filename = filename.replace('?', '..')
     filename = filename.replace('=', '.')
     filename = filename.replace('&', '.')
+    filename = filename.replace(';', '-')
     new_name = ''.join(c for c in filename if c in valid_chars)
     if len(new_name) > 1:
         if new_name[0] == '_':
@@ -135,13 +145,14 @@ def download( url, filter, dir, headers, count_depth=1):
 
     print('Downloaded to {}'.format(file_path))
 
-    wait()
-
     if len(downloaded_urls) >= max_downloads:
         print('\nReached specified maximum downloads {}.\n'.format(max_downloads))
         sys.exit(0)
 
     urls = find_urls(data, filter)
+    print( "{} URLs found.".format(len(urls)) )
+
+    wait()
 
     count_depth = count_depth+1
     if count_depth <= max_depth:
@@ -154,12 +165,15 @@ def download( url, filter, dir, headers, count_depth=1):
 
 
 def main():
-    global max_depth, max_downloads, sleep
+    global max_depth, max_downloads, sleep, base_url
     if args.url == None or args.filter == None or args.dir == None:
         parser.print_help()
     else:
         print ('')
         print('URL: {}'.format(args.url))
+        if args.base != None:
+          base_url = args.base
+        print('Base URL: {}'.format(base_url))
         print('Filter: {}'.format(args.filter))
         print('Directory: {}'.format(args.dir))
         # create header obj
