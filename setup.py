@@ -6,12 +6,12 @@ from setuptools import setup, find_packages
 readme = open('README.md', 'r').read()
 setup(
     name='spidey.py',
-    version='0.4.4',
+    version='0.4.5',
     url='https://github.com/khilnani/spidey.py',
     license='MIT',
     author='khilnani',
     author_email='nik@khilnani.org',
-    description='A terribly coded web spider, but useful for recursive API downloads.',
+    description='Web spiders are usually disliked by websites, but useful for recursive API/page downloads for offline analysis.',
     include_package_data=True,
     long_description=readme,
     packages=find_packages(),
