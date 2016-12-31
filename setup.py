@@ -5,8 +5,8 @@ from setuptools import setup, find_packages
 
 readme = open('README.md', 'r').read()
 setup(
-    name='spidey',
-    version='0.4.3',
+    name='spidey.py',
+    version='0.4.4',
     url='https://github.com/khilnani/spidey.py',
     license='MIT',
     author='khilnani',

@@ -4,7 +4,7 @@
 
 ## Installation
 
-> Pypi Location: https://pypi.python.org/pypi/spidey
+> Pypi Location: https://pypi.python.org/pypi/spidey.py
 
 - Using Pypi - `pip install spidey`
 

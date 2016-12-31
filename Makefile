@@ -4,7 +4,7 @@ init:
 
 clean:
 		find . -name "*.pyc" -exec rm -rf {} \;
-		rm -rf spidey.egg-info/
+		rm -rf spidey.py.egg-info/
 		rm -rf build/
 		rm -rf dist/
 		rm -rf test/
