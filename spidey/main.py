@@ -14,7 +14,7 @@ import time
 
 
 """
-./badspider.py \
+./spidey.py \
 	-d test \
 	-f 'www.google.com' \
 	-u 'https://www.google.com/' \
@@ -22,7 +22,7 @@ import time
 	-n 2 \
 	-m 10
 
-./badspider.py \
+./spidey.py \
 	--dir test \
 	--filter 'www.google.com' \
 	--url 'https://www.google.com/' \

@@ -1,25 +1,25 @@
-# badspider.py
+# spidey.py
 
 > Web spiders are usually disliked by websites, but useful for recursive API/page downloads for offline analysis.
 
 ## Installation
 
-> Pypi Location: https://pypi.python.org/pypi/badspider
+> Pypi Location: https://pypi.python.org/pypi/spidey
 
-- Using Pypi - `pip install badspider`
+- Using Pypi - `pip install spidey`
 
 ## Usage
 
-> Run `badspider` for Detailed help.
+> Run `spidey` for Detailed help.
 
-- `badspider --dir NEW_DIR --filter DOMAIN --url URL [--base BASE_URL]`
-- `badspider --dir NEW_DIR --filter DOMAIN --url URL --max MAX_DOWNLOADS`
-- Example - `badspider --dir test --filter 'www.google.com' --url 'https://www.google.com/' --max 20`
+- `spidey --dir NEW_DIR --filter DOMAIN --url URL [--base BASE_URL]`
+- `spidey --dir NEW_DIR --filter DOMAIN --url URL --max MAX_DOWNLOADS`
+- Example - `spidey --dir test --filter 'www.google.com' --url 'https://www.google.com/' --max 20`
 
 ### More Examples
 
 ```
-badspider \
+spidey \
 	-d test \
 	-f 'www.google.com' \
 	-u 'https://www.google.com/' \
@@ -30,7 +30,7 @@ badspider \
     -s 5
 ```
 ```
-badspider \
+spidey \
 	--dir test \
 	--filter 'www.google.com' \
 	--url 'https://www.google.com/'' \ \
